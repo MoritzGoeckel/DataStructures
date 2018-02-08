@@ -20,7 +20,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        if(index > size)
+        if(index >= size)
             throw new IndexOutOfBoundsException();
 
         LinkedListItem<T> currentItem = rootItem;
@@ -55,7 +55,7 @@ public class LinkedList<T> implements List<T> {
     public int getIndex(T item) {
         LinkedListItem<T> currentItem = rootItem;
         for(int i = 0; i < size; i++) {
-            if(currentItem.value == item)
+            if(currentItem.value.equals(item))
                 return i;
             else
                 currentItem = currentItem.nextItem;
