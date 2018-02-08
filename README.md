@@ -3,7 +3,7 @@ Implementation of some of the common data structures
 
 ## Data structures
 - [x] Linked List
-- [ ] Array List
+- [X] Array List
 - [ ] Hash Map
 - [ ] Hash Set
 - [ ] Trie

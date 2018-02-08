@@ -32,11 +32,14 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void remove(int index) {
+        if(index > size - 1)
+            throw new IndexOutOfBoundsException();
+
         if(index == 0)
             rootItem = rootItem.nextItem;
         else {
             LinkedListItem<T> currentItem = rootItem;
-            for (int i = 0; i < index - 1; i++)
+            for (int i = 0; i < index - 1 && i < size; i++)
                 currentItem = currentItem.nextItem;
 
             currentItem.nextItem = currentItem.nextItem.nextItem;

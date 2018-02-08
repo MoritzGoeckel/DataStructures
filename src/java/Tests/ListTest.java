@@ -1,4 +1,4 @@
-package Lists.Tests;
+package Tests;
 
 import Lists.ArrayList;
 import Lists.LinkedList;
@@ -89,6 +89,25 @@ class ListTest {
 
         try{
             list.get(2);
+            fail("Should throw IndexOutOfBoundsException");
+        }catch (IndexOutOfBoundsException e){}
+    }
+
+    //Specifically targeted towards the ArrayList
+    @ParameterizedTest
+    @MethodSource("provideListClass")
+    void provokeFullArray(Class<? extends List> listClass) throws IllegalAccessException, InstantiationException {
+        List<Integer> list = listClass.newInstance();
+
+        for(int i = 0; i < 5; i++)
+            list.add(i);
+
+        list.remove(4);
+
+        assertEquals(4, list.size());
+
+        try{
+            list.get(5);
             fail("Should throw IndexOutOfBoundsException");
         }catch (IndexOutOfBoundsException e){}
     }
