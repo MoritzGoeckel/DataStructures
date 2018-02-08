@@ -1,4 +1,4 @@
-package Lists;
+package Implementations;
 
 public class ArrayList<T> implements List<T> {
 

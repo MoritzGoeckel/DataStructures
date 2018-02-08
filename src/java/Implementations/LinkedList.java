@@ -1,4 +1,4 @@
-package Lists;
+package Implementations;
 
 public class LinkedList<T> implements List<T> {
 

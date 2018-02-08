@@ -1,8 +1,8 @@
 package Tests;
 
-import Lists.ArrayList;
-import Lists.LinkedList;
-import Lists.List;
+import Implementations.ArrayList;
+import Implementations.LinkedList;
+import Implementations.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
