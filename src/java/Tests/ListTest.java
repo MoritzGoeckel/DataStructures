@@ -189,6 +189,11 @@ class ListTest {
             list.get(100);
             fail("Get should throw IndexOutOfBoundsException");
         }catch (IndexOutOfBoundsException e){ }
+
+        try{
+            list.remove(100);
+            fail("Remove should throw IndexOutOfBoundsException");
+        }catch (IndexOutOfBoundsException e){ }
     }
 
     @ParameterizedTest

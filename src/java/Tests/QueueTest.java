@@ -68,4 +68,10 @@ public class QueueTest {
         queue.dequeue();
         assertEquals(0, queue.getSize());
     }
+
+    @Test
+    public void dequeueEmpty() {
+        Queue<Integer> queue = new Queue<>();
+        assertEquals(null, queue.dequeue());
+    }
 }

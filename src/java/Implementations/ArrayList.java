@@ -46,7 +46,7 @@ public class ArrayList<T> implements List<T> {
 
         for (int i = index; i < size - 1; i++){
             if(i == array.length - 1)
-                array[i] = null;
+                array[i] = null; //Todo: This seems to be not necessary
             else
                 array[i] = array[i + 1];
         }

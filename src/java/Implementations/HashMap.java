@@ -19,7 +19,7 @@ public class HashMap<K, V> {
 
         for(LinkedList<KeyValuePair<K, V>> bucket : array)
             for(int i = 0; i < bucket.size(); i++) //Todo: Inefficient, should use an iterator
-                newArray[bucket.get(i).key.hashCode() % size].add(bucket.get(i));
+                newArray[Math.abs(bucket.get(i).key.hashCode()) % size].add(bucket.get(i));
 
         array = newArray;
     }
@@ -27,7 +27,7 @@ public class HashMap<K, V> {
     public void set(K key, V value){
         KeyValuePair<K, V> pair = new KeyValuePair<>(key, value);
 
-        int bucket = key.hashCode() % array.length;
+        int bucket = getBucket(key);
         int listIndex = array[bucket].getIndex(pair);
 
         if(listIndex == -1) {
@@ -44,7 +44,7 @@ public class HashMap<K, V> {
     public V get(K key){
         KeyValuePair<K, V> pair = new KeyValuePair<>(key, null);
 
-        int bucket = key.hashCode() % array.length;
+        int bucket = getBucket(key);
         int listIndex = array[bucket].getIndex(pair);
 
         if(listIndex == -1)
@@ -56,7 +56,7 @@ public class HashMap<K, V> {
     public void remove(K key){
         KeyValuePair<K, V> pair = new KeyValuePair<>(key, null);
 
-        int bucket = key.hashCode() % array.length;
+        int bucket = getBucket(key);
         int listIndex = array[bucket].getIndex(pair);
 
         if(listIndex == -1)
@@ -71,9 +71,7 @@ public class HashMap<K, V> {
 
     public boolean contains(K key){
         KeyValuePair<K, V> pair = new KeyValuePair<>(key, null);
-
-        int bucket = key.hashCode() % array.length;
-        return array[bucket].getIndex(pair) != -1;
+        return array[getBucket(key)].getIndex(pair) != -1;
     }
 
     public int size(){
@@ -90,6 +88,10 @@ public class HashMap<K, V> {
         }
         sb.append("]");
         return sb.toString();
+    }
+
+    private int getBucket(K key){
+        return Math.abs(key.hashCode()) % array.length;
     }
 }
 

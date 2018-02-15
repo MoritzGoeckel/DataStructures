@@ -3,9 +3,7 @@ package Tests;
 import Implementations.HashMap;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HashMapTest {
     @Test
@@ -117,6 +115,24 @@ public class HashMapTest {
             assertTrue(map.contains(Character.toString(c[i])));
             map.remove(Character.toString(c[i]));
             assertFalse(map.contains(Character.toString(c[i])));
+        }
+    }
+
+    @Test
+    public void testEntryNotFound(){
+        HashMap<String, String> map = new HashMap<>();
+        try {
+            map.get("No entry");
+            fail("Should have thrown an Entity not found exception");
+        }catch(RuntimeException e){
+
+        }
+
+        try {
+            map.remove("No entry");
+            fail("Should have thrown an Entity not found exception");
+        }catch(RuntimeException e){
+
         }
     }
 }
