@@ -21,4 +21,10 @@ public class HashSet<V> {
     public int size(){
         return map.size();
     }
+
+    @Override
+    public String toString() {
+        //Todo: Iterate
+        return map.toString();
+    }
 }

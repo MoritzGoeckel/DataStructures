@@ -1,12 +1,12 @@
 package Implementations;
 
-public class LinkedList<T> implements List<T> {
+import java.util.Iterator;
+
+public class LinkedList<T> implements List<T>, Iterable<T> {
 
     private LinkedListItem<T> rootItem = null;
     private LinkedListItem<T> lastItem = null;
     private int size = 0;
-
-    //Todo: Iterator
 
     @Override
     public void add(T item) {
@@ -86,6 +86,25 @@ public class LinkedList<T> implements List<T> {
         }
 
         return "[" + s.toString() + "]";
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            LinkedListItem<T> currentItem = rootItem;
+
+            @Override
+            public boolean hasNext() {
+                return currentItem != null;
+            }
+
+            @Override
+            public T next() {
+                T value = currentItem.value;
+                currentItem = currentItem.nextItem;
+                return value;
+            }
+        };
     }
 }
 

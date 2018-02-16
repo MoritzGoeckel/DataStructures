@@ -1,11 +1,11 @@
 package Implementations;
 
-public class ArrayList<T> implements List<T> {
+import java.util.Iterator;
+
+public class ArrayList<T> implements List<T>, Iterable<T> {
 
     private T[] array;
     private int size = 0;
-
-    //Todo: Iterator
 
     public ArrayList(){
         array = (T[])new Object[3];
@@ -91,5 +91,22 @@ public class ArrayList<T> implements List<T> {
         }
 
         return "[" + s.toString() + "]";
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size;
+            }
+
+            @Override
+            public T next() {
+                return array[currentIndex++];
+            }
+        };
     }
 }

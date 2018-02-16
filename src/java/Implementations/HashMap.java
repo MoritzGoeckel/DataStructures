@@ -1,6 +1,8 @@
 package Implementations;
 
-public class HashMap<K, V> {
+import java.util.Iterator;
+
+public class HashMap<K, V> implements Iterable<KeyValuePair<K, V>>{
 
     private LinkedList<KeyValuePair<K, V>>[] array = new LinkedList[3];
     private int elementsCount = 0;
@@ -94,6 +96,39 @@ public class HashMap<K, V> {
 
     private int getBucket(K key){
         return Math.abs(key.hashCode()) % array.length;
+    }
+
+    @Override
+    public Iterator<KeyValuePair<K, V>> iterator() {
+        return new Iterator<KeyValuePair<K, V>>() {
+
+            int currentItem = 0;
+            int currentIndex = 0;
+            Iterator<KeyValuePair<K, V>> currentInterator = null;
+
+            void findNext(){
+
+            }
+
+            @Override
+            public boolean hasNext() {
+                return currentItem < elementsCount;
+            }
+
+            @Override
+            public KeyValuePair<K, V> next() {
+                if(currentInterator.hasNext())
+                    return currentInterator.next();
+
+                for (; currentIndex < array.length; currentIndex++){
+                    currentInterator = array[currentIndex].iterator();
+                    if(currentInterator.hasNext())
+                        return currentInterator.next();
+                }
+
+                return null;
+            }
+        };
     }
 }
 
