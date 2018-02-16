@@ -5,6 +5,8 @@ public class HashMap<K, V> {
     private LinkedList<KeyValuePair<K, V>>[] array = new LinkedList[3];
     private int elementsCount = 0;
 
+    //Todo: Iterator
+
     public HashMap(){
         for(int i = 0; i < array.length; i++)
             array[i] = new LinkedList<>();

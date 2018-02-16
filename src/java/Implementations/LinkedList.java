@@ -6,6 +6,8 @@ public class LinkedList<T> implements List<T> {
     private LinkedListItem<T> lastItem = null;
     private int size = 0;
 
+    //Todo: Iterator
+
     @Override
     public void add(T item) {
         if(rootItem == null)

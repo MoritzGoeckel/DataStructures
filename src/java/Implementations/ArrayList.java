@@ -5,6 +5,8 @@ public class ArrayList<T> implements List<T> {
     private T[] array;
     private int size = 0;
 
+    //Todo: Iterator
+
     public ArrayList(){
         array = (T[])new Object[3];
     }
