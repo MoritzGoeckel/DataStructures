@@ -1,6 +1,9 @@
 package Implementations;
 
 public class Trie<V> {
+
+    //Todo: WIP
+
     private TrieNode<V> root = new TrieNode<>();
 
     public Trie(){

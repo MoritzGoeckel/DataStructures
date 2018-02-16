@@ -20,8 +20,8 @@ public class HashMap<K, V>{
             newArray[i] = new LinkedList<>();
 
         for(LinkedList<KeyValuePair<K, V>> bucket : array)
-            for(int i = 0; i < bucket.size(); i++) //Todo: Inefficient, should use an iterator
-                newArray[Math.abs(bucket.get(i).key.hashCode()) % size].add(bucket.get(i));
+            for(KeyValuePair<K, V> pair : bucket)
+                newArray[Math.abs(pair.key.hashCode()) % size].add(pair);
 
         array = newArray;
     }

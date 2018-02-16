@@ -7,7 +7,7 @@ Implementation of some of the common data structures
 - [X] Stack
 - [X] Queue
 - [X] Hash Map
-- [ ] Hash Set
+- [X] Hash Set
 - [ ] Trie
 - [ ] Binary Search Tree
 - [ ] Heap
