@@ -1,7 +1,11 @@
 package Tests;
 
+import Implementations.ArrayList;
 import Implementations.HashMap;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -134,5 +138,24 @@ public class HashMapTest {
         }catch(RuntimeException e){
 
         }
+    }
+
+    @Test
+    public void iteratorTest(){
+        HashMap<String, String> map = new HashMap<>();
+        char c[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
+        for(int i = 0; i < c.length; i++)
+            map.set(Character.toString(c[i]), Character.toString(c[Math.min(i + 1, c.length - 1)]));
+
+        StringBuilder sb = new StringBuilder();
+        for (Iterator<String> it = map.keys(); it.hasNext(); ) {
+            sb.append(it.next());
+        }
+        char c2[] = sb.toString().toCharArray();
+        Arrays.sort(c2);
+        Arrays.sort(c);
+
+        for(int i = 0; i < c.length; i++)
+            assertEquals(c[i], c2[i]);
     }
 }

@@ -3,7 +3,7 @@ package Tests;
 import Implementations.HashSet;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HashSetTest {
 
@@ -15,7 +15,7 @@ public class HashSetTest {
         set.add("C");
         set.add("A");
 
-        assertEquals("", set.toString());
+        assertEquals("[B, C, A]", set.toString());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class HashSetTest {
 
         set.remove("A");
 
-        assertEquals("", set.toString());
+        assertEquals("[B, C]", set.toString());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class HashSetTest {
 
         set.clear();
 
-        assertEquals("", set.toString());
+        assertEquals("[]", set.toString());
     }
 
     @Test
@@ -56,5 +56,22 @@ public class HashSetTest {
         assertEquals(2, set.size());
         set.clear();
         assertEquals(0, set.size());
+    }
+
+    @Test
+    void iteratorTest(){
+        HashSet<String> set = new HashSet<>();
+        set.add("A");
+        set.add("B");
+        set.add("C");
+
+        StringBuilder sb = new StringBuilder();
+        for(String s : set)
+            sb.append(s + ",");
+
+        assertNotEquals(-1, sb.indexOf("A,"));
+        assertNotEquals(-1, sb.indexOf("B,"));
+        assertNotEquals(-1, sb.indexOf("C,"));
+        assertEquals(6, sb.length());
     }
 }

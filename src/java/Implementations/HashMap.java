@@ -2,12 +2,10 @@ package Implementations;
 
 import java.util.Iterator;
 
-public class HashMap<K, V> implements Iterable<KeyValuePair<K, V>>{
+public class HashMap<K, V>{
 
     private LinkedList<KeyValuePair<K, V>>[] array = new LinkedList[3];
     private int elementsCount = 0;
-
-    //Todo: Iterator
 
     public HashMap(){
         for(int i = 0; i < array.length; i++)
@@ -98,17 +96,12 @@ public class HashMap<K, V> implements Iterable<KeyValuePair<K, V>>{
         return Math.abs(key.hashCode()) % array.length;
     }
 
-    @Override
-    public Iterator<KeyValuePair<K, V>> iterator() {
-        return new Iterator<KeyValuePair<K, V>>() {
+    public Iterator<K> keys() {
+        return new Iterator<K>() {
 
             int currentItem = 0;
             int currentIndex = 0;
             Iterator<KeyValuePair<K, V>> currentInterator = null;
-
-            void findNext(){
-
-            }
 
             @Override
             public boolean hasNext() {
@@ -116,14 +109,17 @@ public class HashMap<K, V> implements Iterable<KeyValuePair<K, V>>{
             }
 
             @Override
-            public KeyValuePair<K, V> next() {
-                if(currentInterator.hasNext())
-                    return currentInterator.next();
+            public K next() {
+                currentItem++;
 
-                for (; currentIndex < array.length; currentIndex++){
+                if(currentInterator != null && currentInterator.hasNext())
+                    return currentInterator.next().key;
+
+                while(currentIndex < array.length){
                     currentInterator = array[currentIndex].iterator();
+                    currentIndex++;
                     if(currentInterator.hasNext())
-                        return currentInterator.next();
+                        return currentInterator.next().key;
                 }
 
                 return null;

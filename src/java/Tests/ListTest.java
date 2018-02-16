@@ -206,4 +206,18 @@ class ListTest {
 
         assertEquals(-1, list.getIndex(100));
     }
+
+    @ParameterizedTest
+    @MethodSource("provideListClass")
+    void iteratorTest(Class<? extends List> listClass) throws IllegalAccessException, InstantiationException {
+        List<Integer> list = listClass.newInstance();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        int i = 1;
+        for(Integer n : list)
+            assertEquals(new Integer(i++), n);
+    }
 }
