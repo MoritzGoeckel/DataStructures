@@ -81,6 +81,14 @@ public class ArrayList<T> implements List<T>, Iterable<T> {
     }
 
     @Override
+    public void set(int index, T value) {
+        if(index >= size)
+            throw new IndexOutOfBoundsException();
+
+        array[index] = value;
+    }
+
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
 

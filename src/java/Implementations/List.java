@@ -7,4 +7,5 @@ public interface List<T> extends Iterable<T> {
     void clear();
     int getIndex(T item);
     int size();
+    void set(int index, T value);
 }

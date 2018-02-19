@@ -1,5 +1,7 @@
 package Implementations;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.Iterator;
 
 public class LinkedList<T> implements List<T>, Iterable<T> {
@@ -71,6 +73,11 @@ public class LinkedList<T> implements List<T>, Iterable<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public void set(int index, T value) {
+        throw new NotImplementedException();
     }
 
     @Override
