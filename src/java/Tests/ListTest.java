@@ -14,16 +14,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class ListTest {
 
-    /*
-    void add(T item);
-    T get(int index);
-    void remove(int index);
-    void clear();
-    int getIndex(T item);
-    int size();
-     */
-
-    public static Stream<Class<? extends List>> provideListClass() {
+    private static Stream<Class<? extends List>> provideListClass() {
         return Stream.of(ArrayList.class, LinkedList.class);
     }
 

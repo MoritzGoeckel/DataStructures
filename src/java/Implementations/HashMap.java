@@ -2,7 +2,7 @@ package Implementations;
 
 import java.util.Iterator;
 
-public class HashMap<K, V>{
+public class HashMap<K, V> implements Map<K, V>{
 
     private LinkedList<KeyValuePair<K, V>>[] array = new LinkedList[3];
     private int elementsCount = 0;
@@ -26,6 +26,7 @@ public class HashMap<K, V>{
         array = newArray;
     }
 
+    @Override
     public void set(K key, V value){
         KeyValuePair<K, V> pair = new KeyValuePair<>(key, value);
 
@@ -43,6 +44,7 @@ public class HashMap<K, V>{
             setArraySize(array.length + array.length / 3);
     }
 
+    @Override
     public V get(K key){
         KeyValuePair<K, V> pair = new KeyValuePair<>(key, null);
 
@@ -55,6 +57,7 @@ public class HashMap<K, V>{
         return array[bucket].get(listIndex).value;
     }
 
+    @Override
     public void remove(K key){
         KeyValuePair<K, V> pair = new KeyValuePair<>(key, null);
 
@@ -71,11 +74,13 @@ public class HashMap<K, V>{
             setArraySize(elementsCount);
     }
 
+    @Override
     public boolean contains(K key){
         KeyValuePair<K, V> pair = new KeyValuePair<>(key, null);
         return array[getBucket(key)].getIndex(pair) != -1;
     }
 
+    @Override
     public int size(){
         return elementsCount;
     }
@@ -96,6 +101,7 @@ public class HashMap<K, V>{
         return Math.abs(key.hashCode()) % array.length;
     }
 
+    @Override
     public Iterator<K> keys() {
         return new Iterator<K>() {
 
@@ -144,6 +150,6 @@ class KeyValuePair<K, V>{
 
     @Override
     public String toString() {
-        return "{"+ key + ": " + value + "}";
+        return "{"+ key + ":" + value + "}";
     }
 }

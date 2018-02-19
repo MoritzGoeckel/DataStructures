@@ -6,17 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class QueueTest {
-    /*
-    public void enqueue(T value)
-    public T dequeue()
-    public T peek()
-    public int getSize()
-    public String toString()
-    */
+class QueueTest {
 
     @Test
-    public void testEnqueue(){
+    void testEnqueue(){
         Queue<Integer> queue = new Queue<>();
         queue.enqueue(0);
         queue.enqueue(1);
@@ -26,7 +19,7 @@ public class QueueTest {
     }
 
     @Test
-    public void testDequeue(){
+    void testDequeue(){
         Queue<Integer> queue = new Queue<>();
         queue.enqueue(0);
         queue.enqueue(1);
@@ -43,7 +36,7 @@ public class QueueTest {
     }
 
     @Test
-    public void testPeek(){
+    void testPeek(){
         Queue<Integer> queue = new Queue<>();
         queue.enqueue(0);
         assertEquals(new Integer(0), queue.peek());
@@ -56,7 +49,7 @@ public class QueueTest {
     }
 
     @Test
-    public void testSize(){
+    void testSize(){
         Queue<Integer> queue = new Queue<>();
         assertEquals(0, queue.getSize());
         queue.enqueue(0);
@@ -70,7 +63,7 @@ public class QueueTest {
     }
 
     @Test
-    public void dequeueEmpty() {
+    void dequeueEmpty() {
         Queue<Integer> queue = new Queue<>();
         assertEquals(null, queue.dequeue());
     }

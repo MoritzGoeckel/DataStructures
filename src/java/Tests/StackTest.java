@@ -5,17 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StackTest {
-    /*
-    public void push(T value)
-    public T pop()
-    public T peek()
-    public int getSize()
-    public String toString()
-    */
+class StackTest {
 
     @Test
-    public void testPush(){
+    void testPush(){
         Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
@@ -25,7 +18,7 @@ public class StackTest {
     }
 
     @Test
-    public void testPop(){
+    void testPop(){
         Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
@@ -42,7 +35,7 @@ public class StackTest {
     }
 
     @Test
-    public void testPeek(){
+    void testPeek(){
         Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
@@ -51,7 +44,7 @@ public class StackTest {
     }
 
     @Test
-    public void testSize(){
+    void testSize(){
         Stack<Integer> stack = new Stack<>();
         assertEquals(0, stack.getSize());
 

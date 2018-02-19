@@ -9,7 +9,7 @@ Implementation of some of the common data structures
 - [X] Hash Map
 - [X] Hash Set
 - [ ] Trie
-- [ ] Binary Search Tree
+- [X] Binary Search Tree
 - [ ] Heap
 - [ ] AVL Tree
 

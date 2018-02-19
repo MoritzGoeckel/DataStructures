@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HashSetTest {
+class HashSetTest {
 
     @Test
     void addTest(){
@@ -67,7 +67,7 @@ public class HashSetTest {
 
         StringBuilder sb = new StringBuilder();
         for(String s : set)
-            sb.append(s + ",");
+            sb.append(s).append(",");
 
         assertNotEquals(-1, sb.indexOf("A,"));
         assertNotEquals(-1, sb.indexOf("B,"));

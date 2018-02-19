@@ -1,49 +1,41 @@
 package Tests;
 
-import Implementations.ArrayList;
-import Implementations.HashMap;
+import Implementations.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HashMapTest {
-    @Test
-    public void testSetOne(){
-        HashMap<String, String> map = new HashMap<>();
-        map.set("Hallo", "Welt");
+class MapTest {
 
-        assertEquals("[[], [{Hallo: Welt}], []]", map.toString());
+    private static Stream<Class<? extends Map>> provideMapClass() {
+        return Stream.of(HashMap.class, BinarySearchTree.class);
     }
 
-    @Test
-    public void testSetThree(){
-        HashMap<String, String> map = new HashMap<>();
-        map.set("A", "B");
-        map.set("C", "D");
-        map.set("E", "F");
+    @ParameterizedTest
+    @MethodSource("provideMapClass")
+    void testSetMany(Class<? extends Map> mapClass) throws IllegalAccessException, InstantiationException{
+        Map<String, String> map = mapClass.newInstance();
 
-        assertEquals("[[{E: F}], [{C: D}], [{A: B}]]", map.toString());
-    }
-
-    @Test
-    public void testSetMany(){
-        HashMap<String, String> map = new HashMap<>();
         char c[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
         for(int i = 0; i < c.length - 1; i++)
             map.set(Character.toString(c[i]), Character.toString(c[i + 1]));
 
         //Check if they are all in the map
         for(int i = 0; i < c.length - 1; i++)
-            assertTrue(map.toString().contains("{" + Character.toString(c[i]) + ": " + Character.toString(c[i + 1]) + "}"),
+            assertTrue(map.toString().contains("{" + Character.toString(c[i]) + ":" + Character.toString(c[i + 1]) + "}"),
                     "Cant find added item in toString: " + Character.toString(c[i]));
     }
 
-    @Test
-    public void testGet(){
-        HashMap<String, String> map = new HashMap<>();
+    @ParameterizedTest
+    @MethodSource("provideMapClass")
+    void testGet(Class<? extends Map> mapClass) throws IllegalAccessException, InstantiationException{
+        Map<String, String> map = mapClass.newInstance();
         char c[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
 
         //Adding
@@ -55,32 +47,35 @@ public class HashMapTest {
             assertEquals(Character.toString(c[i + 1]), map.get(Character.toString(c[i])));
     }
 
-    @Test
-    public void testOverrideValue(){
-        HashMap<String, String> map = new HashMap<>();
+    @ParameterizedTest
+    @MethodSource("provideMapClass")
+    void testOverrideValue(Class<? extends Map> mapClass) throws IllegalAccessException, InstantiationException{
+        Map<String, String> map = mapClass.newInstance();
         map.set("A", "B");
-        assertTrue(map.toString().contains("{A: B}"), "This should be ensured by testSetOne already");
+        assertTrue(map.toString().contains("{A:B}"), "This should be ensured by testSetOne already");
 
         map.set("A", "C");
-        assertTrue(map.toString().contains("{A: C}"), "New value should be in the array");
-        assertFalse(map.toString().contains("{A: B}"), "Old value should not exist anymore");
+        assertTrue(map.toString().contains("{A:C}"), "New value should be in the array");
+        assertFalse(map.toString().contains("{A:B}"), "Old value should not exist anymore");
     }
 
-    @Test
-    public void testRemove(){
-        HashMap<String, String> map = new HashMap<>();
+    @ParameterizedTest
+    @MethodSource("provideMapClass")
+    void testRemove(Class<? extends Map> mapClass) throws IllegalAccessException, InstantiationException{
+        Map<String, String> map = mapClass.newInstance();
         map.set("A", "B");
         map.set("D", "E");
 
         map.remove("A");
 
-        assertTrue(map.toString().contains("{D: E}"), "Unaffected value still there");
-        assertFalse(map.toString().contains("{A: B}"), "Deleted value should be gone");
+        assertTrue(map.toString().contains("{D:E}"), "Unaffected value still there");
+        assertFalse(map.toString().contains("{A:B}"), "Deleted value should be gone");
     }
 
-    @Test
-    public void testSizeAdding(){
-        HashMap<String, String> map = new HashMap<>();
+    @ParameterizedTest
+    @MethodSource("provideMapClass")
+    void testSizeAdding(Class<? extends Map> mapClass) throws IllegalAccessException, InstantiationException{
+        Map<String, String> map = mapClass.newInstance();
         char c[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
         for(int i = 0; i < c.length - 1; i++) {
             assertEquals(i, map.size());
@@ -88,9 +83,10 @@ public class HashMapTest {
         }
     }
 
-    @Test
-    public void testSizeRemoving(){
-        HashMap<String, String> map = new HashMap<>();
+    @ParameterizedTest
+    @MethodSource("provideMapClass")
+    void testSizeRemoving(Class<? extends Map> mapClass) throws IllegalAccessException, InstantiationException{
+        Map<String, String> map = mapClass.newInstance();
         char c[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
         for(int i = 0; i < c.length - 1; i++)
             map.set(Character.toString(c[i]), Character.toString(c[i + 1]));
@@ -102,9 +98,10 @@ public class HashMapTest {
         }
     }
 
-    @Test
-    public void testContains(){
-        HashMap<String, String> map = new HashMap<>();
+    @ParameterizedTest
+    @MethodSource("provideMapClass")
+    void testContains(Class<? extends Map> mapClass) throws IllegalAccessException, InstantiationException{
+        Map<String, String> map = mapClass.newInstance();
         char c[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
 
         //Adding
@@ -122,27 +119,29 @@ public class HashMapTest {
         }
     }
 
-    @Test
-    public void testEntryNotFound(){
-        HashMap<String, String> map = new HashMap<>();
+    @ParameterizedTest
+    @MethodSource("provideMapClass")
+    void testEntryNotFound(Class<? extends Map> mapClass) throws IllegalAccessException, InstantiationException{
+        Map<String, String> map = mapClass.newInstance();
         try {
             map.get("No entry");
             fail("Should have thrown an Entity not found exception");
-        }catch(RuntimeException e){
+        }catch(RuntimeException ignored){
 
         }
 
         try {
             map.remove("No entry");
             fail("Should have thrown an Entity not found exception");
-        }catch(RuntimeException e){
+        }catch(RuntimeException ignored){
 
         }
     }
 
-    @Test
-    public void iteratorTest(){
-        HashMap<String, String> map = new HashMap<>();
+    @ParameterizedTest
+    @MethodSource("provideMapClass")
+    void iteratorTest(Class<? extends Map> mapClass) throws IllegalAccessException, InstantiationException{
+        Map<String, String> map = mapClass.newInstance();
         char c[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
         for(int i = 0; i < c.length; i++)
             map.set(Character.toString(c[i]), Character.toString(c[Math.min(i + 1, c.length - 1)]));
