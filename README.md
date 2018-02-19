@@ -8,11 +8,10 @@ Implementation of some of the common data structures
 - [X] Queue
 - [X] Hash Map
 - [X] Hash Set
-- [ ] Trie
 - [X] Binary Search Tree
 - [X] Heap
+- [ ] Trie (WIP)
 - [ ] AVL Tree
 
-
 ## Tests
-The entire project is covered by unit tests using JUnit5. The current line coverage is 100%
+The entire project is covered by unit tests using JUnit5. The current line coverage is 92%
