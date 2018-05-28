@@ -10,7 +10,7 @@ Implementation of some of the common data structures
 - [X] Hash Set
 - [X] Binary Search Tree
 - [X] Heap
-- [ ] Trie (WIP)
+- [ ] Trie
 - [ ] AVL Tree
 
 ## Tests
